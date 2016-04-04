@@ -20,9 +20,7 @@ namespace RiotApi
         /// Shared HTTP client for all Requesters.
         /// </summary>
         private static readonly HttpClient HttpClient = new HttpClient();
-
         
-
         public string Key { get; private set; }
         public RetryPolicy RetryPolicy { get; set; }
 
@@ -33,7 +31,6 @@ namespace RiotApi
         protected WebRequester(string key)
         {
             Key = key;
-            
         }
 
         /// <summary>
@@ -51,6 +48,21 @@ namespace RiotApi
         }
 
         /// <summary>
+        /// Sends an API request asynchronously and returns the serialized response object as
+        /// a <see cref="JObject"/>.
+        /// </summary>
+        /// <param name="region">The API region.</param>
+        /// <param name="relativeUri">The relative URI.</param>
+        /// <param name="parameters">An optional collection of parameters.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The response object.</returns>
+        public virtual Task<JObject> GetAsync(string region, string relativeUri,
+            IEnumerable<KeyValuePair<string, string>> parameters, CancellationToken cancellationToken)
+        {
+            return GetAsync(region, GetRequestUri(region, relativeUri, parameters), cancellationToken);
+        }
+
+        /// <summary>
         /// Sends an API request asynchronously and returns the serialized response object.
         /// </summary>
         /// <typeparam name="TResult">The type of the response object.</typeparam>
@@ -62,6 +74,21 @@ namespace RiotApi
             IEnumerable<KeyValuePair<string, string>> parameters = null)
         {
             return GetAsync<TResult>(region, GetRequestUri(region, relativeUri, parameters), CancellationToken.None);
+        }
+
+        /// <summary>
+        /// Sends an API request asynchronously and returns the serialized response object.
+        /// </summary>
+        /// <typeparam name="TResult">The type of the response object.</typeparam>
+        /// <param name="region">The API region.</param>
+        /// <param name="relativeUri">The relative URI.</param>
+        /// <param name="parameters">An optional collection of parameters.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The response object.</returns>
+        public virtual Task<TResult> GetAsync<TResult>(string region, string relativeUri,
+            IEnumerable<KeyValuePair<string, string>> parameters, CancellationToken cancellationToken)
+        {
+            return GetAsync<TResult>(region, GetRequestUri(region, relativeUri, parameters), cancellationToken);
         }
 
         /// <summary>
