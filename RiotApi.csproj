@@ -44,11 +44,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\ApiVersions.cs" />
+    <Compile Include="Client\RiotClient.cs" />
+    <Compile Include="Client\RiotClientBase.cs" />
+    <Compile Include="Client\SummonerClient.cs" />
+    <Compile Include="Entity\Mastery.cs" />
+    <Compile Include="Entity\MasteryPage.cs" />
+    <Compile Include="Entity\MasteryPageCollection.cs" />
+    <Compile Include="Entity\RunePage.cs" />
+    <Compile Include="Entity\RunePageCollection.cs" />
+    <Compile Include="Entity\RuneSlot.cs" />
+    <Compile Include="Entity\Summoner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RateLimitedWebRequester.cs" />
     <Compile Include="RetryPolicy.cs" />
     <Compile Include="RiotApiException.cs" />
     <Compile Include="RiotHttpException.cs" />
+    <Compile Include="Serialization\Json\MillisecondsConverter.cs" />
     <Compile Include="WebRequester.cs" />
   </ItemGroup>
   <ItemGroup>
