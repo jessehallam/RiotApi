@@ -18,7 +18,7 @@ namespace RiotApi.Serialization.Json
         {
             if (reader.TokenType == JsonToken.Integer)
             {
-                long value = Convert.ToInt64(reader.Value);
+                long value = serializer.Deserialize<long>(reader);
                 return EpochTime.AddMilliseconds(value);
             }
             return null;
