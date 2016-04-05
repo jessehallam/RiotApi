@@ -11,6 +11,11 @@
         public LeagueClient Leagues { get; }
 
         /// <summary>
+        /// Gets the client used for making requests to the matches API.
+        /// </summary>
+        public RankedMatchesClient Ranked { get; }
+
+        /// <summary>
         /// Gets the client used for making requests to the summoner API.
         /// </summary>
         public SummonerClient Summoners { get; }
@@ -22,6 +27,7 @@
         public RiotClient(WebRequester requester) : base(requester)
         {
             Leagues = new LeagueClient(requester);
+            Ranked = new RankedMatchesClient(requester);
             Summoners = new SummonerClient(requester);
         }
     }

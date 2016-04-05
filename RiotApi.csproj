@@ -45,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\ApiVersions.cs" />
+    <Compile Include="Client\Fluent\MatchListQuery.cs" />
     <Compile Include="Client\LeagueClient.cs" />
+    <Compile Include="Client\RankedMatchesClient.cs" />
     <Compile Include="Client\RiotClient.cs" />
     <Compile Include="Client\RiotClientBase.cs" />
     <Compile Include="Client\SummonerClient.cs" />
@@ -57,6 +59,12 @@
     <Compile Include="Entity\Mastery.cs" />
     <Compile Include="Entity\MasteryPage.cs" />
     <Compile Include="Entity\MasteryPageCollection.cs" />
+    <Compile Include="Entity\Matches\MatchLane.cs" />
+    <Compile Include="Entity\Matches\MatchList.cs" />
+    <Compile Include="Entity\Matches\MatchQueue.cs" />
+    <Compile Include="Entity\Matches\MatchReference.cs" />
+    <Compile Include="Entity\Matches\MatchRole.cs" />
+    <Compile Include="Entity\Matches\MatchSeason.cs" />
     <Compile Include="Entity\RunePage.cs" />
     <Compile Include="Entity\RunePageCollection.cs" />
     <Compile Include="Entity\RuneSlot.cs" />
@@ -69,6 +77,8 @@
     <Compile Include="Serialization\Json\EnumMappingConverter.cs" />
     <Compile Include="Serialization\Json\MappingAttribute.cs" />
     <Compile Include="Serialization\Json\MillisecondsConverter.cs" />
+    <Compile Include="Util\SummonerNameUtil.cs" />
+    <Compile Include="Util\UnixTimeUtil.cs" />
     <Compile Include="WebRequester.cs" />
   </ItemGroup>
   <ItemGroup>

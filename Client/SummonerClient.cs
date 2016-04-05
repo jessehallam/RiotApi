@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using RiotApi.Entity;
+using RiotApi.Util;
 
 namespace RiotApi.Client
 {
@@ -59,6 +60,7 @@ namespace RiotApi.Client
         public async Task<Summoner> FindByNameAsync(string region, string name,
             CancellationToken cancellationToken = default(CancellationToken))
         {
+            name = SummonerNameUtil.Escape(name);
             var uri = $"{ApiVersions.Summoner}/summoner/by-name/{Uri.EscapeDataString(name)}";
             var result = await Requester.GetAsync<IDictionary<string, Summoner>>(region, uri, null, cancellationToken);
             return result != null && result.ContainsKey(name) ? result[name] : null;

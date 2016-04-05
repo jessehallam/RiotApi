@@ -3,21 +3,29 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using RiotApi.Entity.Leagues;
+using RiotApi.Serialization.Json;
 
 namespace RiotApi.Client
 {
     public class LeagueClient : RiotClientBase
     {
+        private readonly EnumMapper<LeagueQueue> _mapper; 
+
         public LeagueClient(WebRequester requester) : base(requester)
         {
-            
+            _mapper = EnumMappingRegistry.GetMapper<LeagueQueue>();
         }
 
-        public Task<League> GetChallengerLeagueAsync(string region,
+        public Task<League> GetChallengerLeagueAsync(string region, LeagueQueue queue,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var uri = $"{ApiVersions.League}/league/challenger";
-            return Requester.GetAsync<League>(region, uri, null, cancellationToken);
+            
+            var paramList = new[]
+            {
+                new KeyValuePair<string, string>("type", _mapper.GetKey(queue)) 
+            };
+            return Requester.GetAsync<League>(region, uri, paramList, cancellationToken);
         }
 
         /// <summary>
@@ -54,11 +62,15 @@ namespace RiotApi.Client
             return result != null && result.ContainsKey(summonerId) ? result[summonerId] : null;
         }
 
-        public Task<League> GetMasterLeagueAsync(string region,
+        public Task<League> GetMasterLeagueAsync(string region, LeagueQueue queue,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var uri = $"{ApiVersions.League}/league/master";
-            return Requester.GetAsync<League>(region, uri, null, cancellationToken);
+            var paramList = new[]
+            {
+                new KeyValuePair<string, string>("type", _mapper.GetKey(queue))
+            };
+            return Requester.GetAsync<League>(region, uri, paramList, cancellationToken);
         } 
     }
 }
