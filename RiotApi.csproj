@@ -45,9 +45,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\ApiVersions.cs" />
+    <Compile Include="Client\LeagueClient.cs" />
     <Compile Include="Client\RiotClient.cs" />
     <Compile Include="Client\RiotClientBase.cs" />
     <Compile Include="Client\SummonerClient.cs" />
+    <Compile Include="Entity\Leagues\League.cs" />
+    <Compile Include="Entity\Leagues\LeagueDivision.cs" />
+    <Compile Include="Entity\Leagues\LeagueEntry.cs" />
+    <Compile Include="Entity\Leagues\LeagueQueue.cs" />
+    <Compile Include="Entity\Leagues\LeagueTier.cs" />
     <Compile Include="Entity\Mastery.cs" />
     <Compile Include="Entity\MasteryPage.cs" />
     <Compile Include="Entity\MasteryPageCollection.cs" />
@@ -60,6 +66,8 @@
     <Compile Include="RetryPolicy.cs" />
     <Compile Include="RiotApiException.cs" />
     <Compile Include="RiotHttpException.cs" />
+    <Compile Include="Serialization\Json\EnumMappingConverter.cs" />
+    <Compile Include="Serialization\Json\MappingAttribute.cs" />
     <Compile Include="Serialization\Json\MillisecondsConverter.cs" />
     <Compile Include="WebRequester.cs" />
   </ItemGroup>
